@@ -40,6 +40,9 @@ const StyledText = styled.p `
     width: 200px;
     color: #FFFFFF;
     transform: rotate(-90deg);
+    left: 42px;
+    line-height: 24px;
+    transform-origin: top left;
 `
 function Sidebar() {
     return(
