@@ -11,6 +11,7 @@ const StyledSidebar = styled.div `
     width: 117px;
     height: 1024px;
     position: relative;
+    display: inline-block;
 `
 const IconContainer = styled.div `
     height: 100%;
