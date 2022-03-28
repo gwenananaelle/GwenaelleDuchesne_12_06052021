@@ -5,6 +5,7 @@ import './styles/index.css';
 import App from './App';
 import { createGlobalStyle } from 'styled-components'
 import Dashboard from './components/Dashboard';
+import KeyData from './components/KeyData'
 
 if (process.env.NODE_ENV === 'development') {
   const { worker } = require('./mocks/browser')
@@ -22,7 +23,10 @@ ReactDOM.render(
         <GlobalStyle />
         <Routes>
             <Route path="user" element={<App />} >
-                <Route path=":id" element={<Dashboard />} />
+                <Route path=":id" element={<Dashboard />} >
+                    <Route index element={<KeyData />}/>
+                    <Route path="key-data" element={<KeyData />}/>
+                </Route>
             </Route>     
         </Routes>
     </BrowserRouter>,

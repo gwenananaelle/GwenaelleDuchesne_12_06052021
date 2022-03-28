@@ -1,14 +1,14 @@
 import './styles/App.css';
+import { Outlet } from 'react-router-dom'
 import NavigationBar from './components/NavigationBar';
 import Sidebar from './components/Sidebar';
-import Dashboard from './components/Dashboard';
 
 function App() {
   return (
     <div>
       <NavigationBar />
       <Sidebar />
-      <Dashboard />
+      <Outlet />
     </div>
   );
 }

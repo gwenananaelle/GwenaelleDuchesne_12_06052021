@@ -1,33 +1,28 @@
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { useParams } from 'react-router-dom';
+import { useParams, Outlet } from 'react-router-dom';
+import fetchUser from 'services/userAPI';
 
 const StyledMain = styled.main`
     display: inline-block;
 `
-
 function Dashboard() {
     let { id } = useParams();
-    const [{userInfos}, setData] = useState({})
+    const [{userInfos, keyData}, setData] = useState({})
 
     useEffect(() => {
-    async function fetchUser() {
-      try {
-        const response = await fetch(`http://localhost:3000/user/${id}`)
-        const { data }  = await response.json()
-        data && setData(data)
-        console.log(data);
-      } catch (err) {
-        console.log(err)
-      }
-    }
-    fetchUser()
+      fetchUser(id).then((res) => {
+        if (res) {
+          console.log(res);
+          setData(res)
+        }
+      })
     }, [id])
-
     return (
         <StyledMain>
-            <h1>Bonjour {userInfos ? userInfos.firstName : 'Carlos'}</h1>
+            <h1>Bonjour {userInfos && userInfos.firstName}</h1>
             <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
+            {keyData && <Outlet context={keyData}/>}
         </StyledMain>
     )
 }
