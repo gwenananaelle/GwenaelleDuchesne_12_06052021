@@ -15,7 +15,13 @@ async function fetchData(url) {
 async function fetchUser(id) {
     return await fetchData(`http://localhost:3000/user/${id}`)
 }
-
+async function fetchActivity(id) {
+    const { sessions } = await fetchData(
+        `http://localhost:3000/user/${id}/activity`
+    )
+    return sessions
+    // return await fetchData(`http://localhost:3000/user/${id}/activity`)
+}
 async function fetchPerformance(id) {
     const { data, kind } = await fetchData(
         `http://localhost:3000/user/${id}/performance`
@@ -26,4 +32,4 @@ async function fetchPerformance(id) {
     return data
 }
 
-export { fetchUser, fetchPerformance }
+export { fetchUser, fetchActivity, fetchPerformance }

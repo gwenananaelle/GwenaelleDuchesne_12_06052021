@@ -7,6 +7,7 @@ import Sidebar from 'components/Sidebar'
 import KeyData from 'components/KeyData'
 import Performance from 'components/Performance'
 import Header from 'components/Header'
+import Activity from 'components/Activity'
 
 const StyledMain = styled.main`
     display: inline-block;
@@ -33,6 +34,7 @@ export default function Dashboard() {
             <StyledMain>
                 {userInfos && <Header firstName={userInfos.firstName} />}
                 {dataElm}
+                <Activity />
                 <Performance />
             </StyledMain>
         </div>
