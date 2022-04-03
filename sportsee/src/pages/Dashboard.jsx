@@ -22,13 +22,17 @@ export default function Dashboard() {
             }
         })
     }, [id])
+    let dataElm = keyData && Object.keys(keyData).map((category, index) => {
+        return <KeyData key={index+ category} category ={category} categoryCount={keyData[category]} />
+    });
+
     return (
         <div>
             <NavigationBar />
             <Sidebar />
             <StyledMain>
                 {userInfos && <Header firstName={userInfos.firstName} />}
-                {keyData && <KeyData data={keyData} />}
+                {dataElm}
                 <Performance />
             </StyledMain>
         </div>
