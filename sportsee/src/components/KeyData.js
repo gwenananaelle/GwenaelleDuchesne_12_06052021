@@ -50,11 +50,11 @@ const Text = styled.div`
     }
 `
 /**
- *
+ * thumb component, count for calories, proteins, glucides or lipids
  * @param {object} props
  * @param {string} props.category - should be one of those : calorieCount, proteinCount, carbohydrateCount, lipidCount
  * @param {number} props.categoryCount
- * @returns
+ * @returns {string} component generated HTML
  */
 function KeyData({ category, categoryCount }) {
     let image, unit, type, alt, color
