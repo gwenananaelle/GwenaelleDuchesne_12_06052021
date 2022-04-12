@@ -5,15 +5,16 @@ import { ReactComponent as Dumbbell } from '../assets/dumbbell.svg'
 import styled from 'styled-components'
 import colors from '../utils/style/colors'
 
-const StyledSidebar = styled.div `
+const StyledSidebar = styled.div`
     background-color: ${colors.primary};
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    width: 117px;
-    height: 1024px;
+    width: 8%;
+    height: 100vh;
+    min-height: 1024px;
     position: relative;
     display: inline-block;
 `
-const IconContainer = styled.div `
+const IconContainer = styled.div`
     height: 100%;
     display: flex;
     justify-content: center;
@@ -23,7 +24,7 @@ const IconContainer = styled.div `
 `
 const ExerciseIcon = styled.span`
     margin: 20px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     border-radius: 6px;
     width: 64px;
     height: 64px;
@@ -34,24 +35,32 @@ const ExerciseIcon = styled.span`
     align-items: center;
     flex-wrap: nowrap;
 `
-const StyledText = styled.p `
+const StyledText = styled.p`
     position: absolute;
     bottom: 59px;
     width: 200px;
-    color: #FFFFFF;
+    color: #ffffff;
     transform: rotate(-90deg);
     left: 42px;
     line-height: 24px;
     transform-origin: top left;
 `
 function Sidebar() {
-    return(
+    return (
         <StyledSidebar>
             <IconContainer>
-                <ExerciseIcon><Meditating /></ExerciseIcon>
-                <ExerciseIcon><Swimming /></ExerciseIcon>
-                <ExerciseIcon><Biking /></ExerciseIcon>
-                <ExerciseIcon><Dumbbell /></ExerciseIcon>
+                <ExerciseIcon>
+                    <Meditating />
+                </ExerciseIcon>
+                <ExerciseIcon>
+                    <Swimming />
+                </ExerciseIcon>
+                <ExerciseIcon>
+                    <Biking />
+                </ExerciseIcon>
+                <ExerciseIcon>
+                    <Dumbbell />
+                </ExerciseIcon>
             </IconContainer>
             <StyledText>Copyright, SportSee 2020</StyledText>
         </StyledSidebar>

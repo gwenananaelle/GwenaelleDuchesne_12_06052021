@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import colors from '../utils/style/colors'
 
 const NavigationBarDiv = styled.div`
+    width: 100vw;
     height: 91px;
     background-color: ${colors.primary};
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -17,7 +18,7 @@ const StyledLogo = styled(Logo)`
     flex-grow: 1;
 `
 const NavigationList = styled.ul`
-    flex-grow: 4;   
+    flex-grow: 4;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -29,44 +30,31 @@ const NavigationList = styled.ul`
     align-items: center;
 `
 const StyledNavLink = styled(NavLink)`
-    color:white;
+    color: white;
     font-size: 24px;
-    &:link, &:visited, &:hover, &:active {
+    &:link,
+    &:visited,
+    &:hover,
+    &:active {
         text-decoration: none;
     }
 `
 function NavigationBar() {
     return (
         <NavigationBarDiv>
-            <StyledLogo/>
+            <StyledLogo />
             <NavigationList>
                 <li>
-                    <StyledNavLink
-                        to="/"
-                    >
-                        Accueil
-                    </StyledNavLink>
+                    <StyledNavLink to="/">Accueil</StyledNavLink>
                 </li>
                 <li>
-                    <StyledNavLink
-                        to="/"
-                    >
-                        Profil
-                    </StyledNavLink>
+                    <StyledNavLink to="/">Profil</StyledNavLink>
                 </li>
                 <li>
-                    <StyledNavLink
-                        to="/"
-                    >
-                        Réglages
-                    </StyledNavLink>
+                    <StyledNavLink to="/">Réglages</StyledNavLink>
                 </li>
                 <li>
-                    <StyledNavLink
-                        to="/"
-                    >
-                        Communauté
-                    </StyledNavLink>
+                    <StyledNavLink to="/">Communauté</StyledNavLink>
                 </li>
             </NavigationList>
         </NavigationBarDiv>
