@@ -8,7 +8,7 @@ import KeyData from 'components/KeyData'
 import Performance from 'components/Performance'
 import Header from 'components/Header'
 import Activity from 'components/Activity'
-// import AverageSessions from 'components/AverageSessions'
+import AverageSessionsLineChart from 'components/AverageSessionsLineChart'
 import Score from 'components/Score'
 import UserMapper from 'mapper/UserMapper'
 
@@ -58,7 +58,7 @@ export default function Dashboard() {
                 {firstName && <Header firstName={firstName} />}
                 <Activity />
                 <StyledData>{dataElm}</StyledData>
-                {/* <AverageSessions /> */}
+                <AverageSessionsLineChart />
                 <Performance />
                 <Score todayScore={score}/>
             </StyledMain>
