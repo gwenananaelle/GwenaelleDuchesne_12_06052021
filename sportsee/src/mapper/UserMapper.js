@@ -1,5 +1,9 @@
 import User from 'models/User'
 
+/**
+ * Convert json to User
+ * @class
+ */
 export default class UserMapper {
     static convertToUser(json) {
         const id = json.id
