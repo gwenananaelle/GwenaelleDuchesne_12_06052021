@@ -5,7 +5,7 @@ import { fetchUser } from 'services/fetchAPI'
 import NavigationBar from 'components/NavigationBar'
 import Sidebar from 'components/Sidebar'
 import KeyData from 'components/KeyData'
-import Performance from 'components/Performance'
+import Performance from 'components/PerformanceRadarChart'
 import Header from 'components/Header'
 import Activity from 'components/Activity'
 import AverageSessionsLineChart from 'components/AverageSessionsLineChart'
@@ -33,7 +33,10 @@ const StyledData = styled.div`
     grid-column : 4/5;
     grid-row : 2/4;
 `
-
+/**
+ * React component "Dashboard" 
+ * @returns {string} component generated HTML
+ */
 export default function Dashboard() {
     let { id } = useParams()
     const [{ firstName, score, keyData }, setData] = useState({})
