@@ -25,13 +25,7 @@ async function fetchSessions(id) {
     return await fetchData(`http://localhost:3000/user/${id}/average-sessions`)
 }
 async function fetchPerformance(id) {
-    const { data, kind } = await fetchData(
-        `http://localhost:3000/user/${id}/performance`
-    )
-    data.forEach((elm) => {
-        elm.kind = kind[elm.kind]
-    })
-    return data
+    return await fetchData(`http://localhost:3000/user/${id}/performance`)
 }
 
 export { fetchUser, fetchActivity, fetchSessions, fetchPerformance }
