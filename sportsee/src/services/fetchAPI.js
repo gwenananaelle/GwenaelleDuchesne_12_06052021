@@ -16,10 +16,7 @@ async function fetchUser(id) {
     return await fetchData(`http://localhost:3000/user/${id}`)
 }
 async function fetchActivity(id) {
-    const { sessions } = await fetchData(
-        `http://localhost:3000/user/${id}/activity`
-    )
-    return sessions
+    return await fetchData(`http://localhost:3000/user/${id}/activity`)
 }
 async function fetchSessions(id) {
     return await fetchData(`http://localhost:3000/user/${id}/average-sessions`)
