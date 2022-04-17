@@ -8,36 +8,61 @@ import KeyData from 'components/KeyData'
 import Performance from 'components/Performance'
 import Header from 'components/Header'
 import Activity from 'components/Activity'
+// import AverageSessions from 'components/AverageSessions'
+import Score from 'components/Score'
+import UserMapper from 'mapper/UserMapper'
+
+const StyledPageDiv = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: flex-start;
+`
 
 const StyledMain = styled.main`
-    display: inline-block;
+    width: 80%;
+    margin: 60px auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);  
+    column-gap: 30px;
+    row-gap: 28px;
 `
+const StyledData = styled.div`
+    grid-column : 4/5;
+    grid-row : 2/4;
+`
+
 export default function Dashboard() {
     let { id } = useParams()
-    const [{ userInfos, keyData }, setData] = useState({})
+    const [{ firstName, score, keyData }, setData] = useState({})
 
     useEffect(() => {
         fetchUser(id).then((res) => {
             if (res) {
-                setData(res)
+                setData(UserMapper.convertToUser(res))
             }
         })
     }, [id])
-    let dataElm = keyData && Object.keys(keyData).map((category, index) => {
-        return <KeyData key={index+ category} category ={category} categoryCount={keyData[category]} />
-    });
 
+    let dataElm = keyData && keyData.map(({name, value, index}) => {
+        return <KeyData key={index + name} category ={name} categoryCount={value} />
+    });
+    
     return (
-        <div>
+        <StyledPageDiv>
             <NavigationBar />
             <Sidebar />
             <StyledMain>
-                {userInfos && <Header firstName={userInfos.firstName} />}
-                {dataElm}
+                {firstName && <Header firstName={firstName} />}
                 <Activity />
+                <StyledData>{dataElm}</StyledData>
+                {/* <AverageSessions /> */}
                 <Performance />
+                <Score todayScore={score}/>
             </StyledMain>
-        </div>
+        </StyledPageDiv>
         
     )
 }
