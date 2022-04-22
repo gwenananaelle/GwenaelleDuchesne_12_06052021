@@ -48,7 +48,7 @@ CUSTOM ELEMENTS
 
 /**
  * Custom legend, change text and add style
- * @param {string="calories, kilogram"} value
+ * @param {string} value "calories, kilogram"
  * @returns {string} component generated HTML
  */
 function renderColorfulLegendText(value) {

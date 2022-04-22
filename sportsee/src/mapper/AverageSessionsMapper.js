@@ -1,5 +1,9 @@
 import AverageSession from 'models/AverageSession'
 
+/**
+ * Convert json to AverageSession
+ * @class AverageSessionsMapper
+ */
 export default class AverageSessionsMapper {
     static convertToAverageSessions(json) {
         const sessions = json.sessions.map((session) => {

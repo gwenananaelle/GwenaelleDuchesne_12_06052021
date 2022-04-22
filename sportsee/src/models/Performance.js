@@ -1,6 +1,6 @@
 /**
  * creates a new Performance
- * @class
+ * @class Performance
  */
 export default class Performance {
     constructor({ value, kind }) {

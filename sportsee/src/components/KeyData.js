@@ -52,7 +52,7 @@ const Text = styled.div`
 /**
  * thumb component, count for calories, proteins, glucides or lipids
  * @param {object} props
- * @param {string="calorieCount, proteinCount, carbohydrateCount, lipidCount"} props.category
+ * @param {string} props.category "calorieCount, proteinCount, carbohydrateCount, lipidCount"
  * @param {number} props.categoryCount
  * @returns {string} component generated HTML
  */

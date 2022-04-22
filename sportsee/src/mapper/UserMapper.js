@@ -2,7 +2,7 @@ import User from 'models/User'
 
 /**
  * Convert json to User
- * @class
+ * @class UserMapper
  */
 export default class UserMapper {
     static convertToUser(json) {

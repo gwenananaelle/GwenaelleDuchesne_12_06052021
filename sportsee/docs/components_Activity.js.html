@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Activity.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Activity.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { fetchActivity } from 'services/fetchAPI'
+import {
+    ResponsiveContainer,
+    BarChart,
+    CartesianGrid,
+    XAxis,
+    YAxis,
+    Tooltip,
+    Legend,
+    Bar,
+} from 'recharts'
+import colors from 'utils/style/colors'
+import styled from 'styled-components'
+import PropTypes from 'prop-types'
+import ActivitySessionsMapper from 'mapper/ActivitySessionsMapper'
+
+/*
+STYLE
+ */
+
+const StyledResponsiveContainer = styled(ResponsiveContainer)`
+    grid-column: 1/4;
+    background: ${colors.background};
+`
+const StyledTooltip = styled.div`
+    background: #e60000;
+    height: 63px;
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+`
+const StyledLabel = styled.p`
+    font-size: 7px;
+    color: #ffffff;
+`
+const StyledLegend = styled.span`
+    font-size: 14px;
+    color: #74798c;
+`
+/*
+CUSTOM ELEMENTS
+*/
+
+/**
+ * Custom legend, change text and add style
+ * @param {string} value "calories, kilogram"
+ * @returns {string} component generated HTML
+ */
+function renderColorfulLegendText(value) {
+    if (value === 'kilogram') {
+        return &lt;StyledLegend>Poids (kg)&lt;/StyledLegend>
+    } else if (value === 'calories') {
+        return &lt;StyledLegend>Calories brûlées (kCal)&lt;/StyledLegend>
+    } else {
+        return null
+    }
+}
+renderColorfulLegendText.propTypes = {
+    value: PropTypes.string,
+}
+
+/**
+ * Custom tooltip, adds unit and style
+ * @param {Object} props
+ * @param {Array} props.payload
+ * @param {Boolean} props.active
+ * @returns {string} component generated HTML
+ */
+function CustomTooltip({ payload, active }) {
+    if (active &amp;&amp; payload &amp;&amp; payload.length) {
+        return (
+            &lt;StyledTooltip>
+                &lt;StyledLabel>{`${payload[0].value} kg`}&lt;/StyledLabel>
+                &lt;StyledLabel>{`${payload[1].value} Kcal`}&lt;/StyledLabel>
+            &lt;/StyledTooltip>
+        )
+    }
+
+    return null
+}
+CustomTooltip.propTypes = {
+    payload: PropTypes.array,
+    active: PropTypes.bool,
+}
+
+/*
+COMPONENT
+*/
+
+/**
+ * React component "Activity" with bar chart
+ * @returns {string} component generated HTML
+ */
+function Activity() {
+    let { id } = useParams()
+    const [sessions, setData] = useState({})
+    useEffect(() => {
+        fetchActivity(id).then((res) => {
+            if (res) {
+                // setData(res)
+                setData(ActivitySessionsMapper.convertToActivitySessions(res))
+            }
+        })
+    }, [id])
+    return (
+        &lt;StyledResponsiveContainer width="100%" height="100%">
+            &lt;BarChart
+                data={sessions}
+                margin={{ top: 50, right: 5, bottom: 5, left: 5 }}
+            >
+                &lt;text
+                    x="100"
+                    y="24"
+                    fill="black"
+                    textAnchor="middle"
+                    verticalAnchor="start"
+                >
+                    &lt;tspan fontSize="14">Activité quotidienne&lt;/tspan>
+                &lt;/text>
+                &lt;Legend
+                    iconSize="8"
+                    iconType="circle"
+                    verticalAlign="top"
+                    align="right"
+                    formatter={renderColorfulLegendText}
+                    wrapperStyle={{ top: 15 }}
+                />
+                &lt;CartesianGrid vertical={false} strokeDasharray="2" />
+                &lt;XAxis dataKey="day" tickLine={false} />
+                &lt;YAxis
+                    orientation="left"
+                    dataKey="calories"
+                    yAxisId={0}
+                    tickLine={false}
+                    axisLine={false}
+                    hide
+                />
+                &lt;YAxis
+                    orientation="right"
+                    dataKey="kilogram"
+                    yAxisId={1}
+                    tickLine={false}
+                    axisLine={false}
+                />
+
+                &lt;Tooltip content={&lt;CustomTooltip />} />
+                &lt;Bar dataKey="kilogram" fill={colors.primary} barSize={7} />
+                &lt;Bar
+                    dataKey="calories"
+                    fill={colors.secondary}
+                    barSize={7}
+                    maxBarSize={1}
+                />
+            &lt;/BarChart>
+        &lt;/StyledResponsiveContainer>
+    )
+}
+export default Activity
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ActivitySession.html">ActivitySession</a></li><li><a href="ActivitySessionsMapper.html">ActivitySessionsMapper</a></li><li><a href="AverageSession.html">AverageSession</a></li><li><a href="AverageSessionsMapper.html">AverageSessionsMapper</a></li><li><a href="Performance.html">Performance</a></li><li><a href="PerformanceMapper.html">PerformanceMapper</a></li><li><a href="User.html">User</a></li><li><a href="UserMapper.html">UserMapper</a></li></ul><h3>Global</h3><ul><li><a href="global.html#Activity">Activity</a></li><li><a href="global.html#AverageSessionsLineChart">AverageSessionsLineChart</a></li><li><a href="global.html#CustomCursor">CustomCursor</a></li><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#KeyData">KeyData</a></li><li><a href="global.html#NavigationBar">NavigationBar</a></li><li><a href="global.html#PerformanceRadarChart">PerformanceRadarChart</a></li><li><a href="global.html#renderColorfulLegendText">renderColorfulLegendText</a></li><li><a href="global.html#renderLegend">renderLegend</a></li><li><a href="global.html#Score">Score</a></li><li><a href="global.html#Sidebar">Sidebar</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Fri Apr 22 2022 14:07:53 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -2,7 +2,7 @@ import ActivitySession from 'models/ActivitySession'
 
 /**
  * Convert json to ActivitySession
- * @class
+ * @class ActivitySessionsMapper
  */
 export default class ActivitySessionsMapper {
     static convertToActivitySessions(json) {

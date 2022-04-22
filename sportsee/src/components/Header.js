@@ -2,6 +2,9 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import colors from '../utils/style/colors'
 
+/*
+STYLE
+ */
 const StyledHeader = styled.div`
     grid-column: 1/5;
 `
@@ -18,6 +21,12 @@ const StyledText = styled.p`
     font-weight: 400;
     font-size: 1.125em;
 `
+/**
+ * React component "Header"
+ * @param {Object} props
+ * @param {string} props.firstName
+ * @returns {string} component generated HTML
+ */
 function Header({ firstName }) {
     return (
         <StyledHeader>

@@ -12,6 +12,10 @@ import AverageSessionsLineChart from 'components/AverageSessionsLineChart'
 import Score from 'components/Score'
 import UserMapper from 'mapper/UserMapper'
 
+/*
+STYLE
+ */
+
 const StyledPageDiv = styled.div`
     display: flex;
     flex-direction: row;

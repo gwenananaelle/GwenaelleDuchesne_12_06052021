@@ -24,6 +24,7 @@ const StyledResponsiveContainer = styled(ResponsiveContainer)`
 /*
 COMPONENT
 */
+
 /**
  * React component "Performance" with radar chart
  * @returns {string} component generated HTML

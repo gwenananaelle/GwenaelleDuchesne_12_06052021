@@ -5,6 +5,9 @@ import { ReactComponent as Dumbbell } from '../assets/dumbbell.svg'
 import styled from 'styled-components'
 import colors from '../utils/style/colors'
 
+/*
+STYLE
+ */
 const StyledSidebar = styled.div`
     background-color: ${colors.primary};
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -45,6 +48,11 @@ const StyledText = styled.p`
     line-height: 24px;
     transform-origin: top left;
 `
+
+/**
+ * React component "SideBar"
+ * @returns {string} component generated HTML
+ */
 function Sidebar() {
     return (
         <StyledSidebar>

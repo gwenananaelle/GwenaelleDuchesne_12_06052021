@@ -2,7 +2,7 @@ import Performance from 'models/Performance'
 
 /**
  * Convert json to Performance
- * @class
+ * @class PerformanceMapper
  */
 export default class PerformanceMapper {
     static convertToPerformances(json) {

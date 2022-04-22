@@ -3,6 +3,9 @@ import { ReactComponent as Logo } from '../assets/logo.svg'
 import styled from 'styled-components'
 import colors from '../utils/style/colors'
 
+/*
+STYLE
+ */
 const NavigationBarDiv = styled.div`
     width: 100vw;
     height: 91px;
@@ -39,6 +42,10 @@ const StyledNavLink = styled(NavLink)`
         text-decoration: none;
     }
 `
+/**
+ * React component "NavigationBar"
+ * @returns {string} component generated HTML
+ */
 function NavigationBar() {
     return (
         <NavigationBarDiv>

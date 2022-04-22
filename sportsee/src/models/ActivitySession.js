@@ -1,6 +1,6 @@
 /**
  * creates a new ActivitySession
- * @class
+ * @class ActivitySession
  */
 export default class ActivitySession {
     constructor({ day, kilogram, calories }) {
