@@ -118,7 +118,7 @@ function Activity() {
                     y="24"
                     fill="black"
                     textAnchor="middle"
-                    verticalAnchor="start"
+                    verticalanchor="start"
                 >
                     <tspan fontSize="14">Activité quotidienne</tspan>
                 </text>
