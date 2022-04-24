@@ -7,7 +7,7 @@ import Sidebar from 'components/Sidebar'
 import KeyData from 'components/KeyData'
 import Performance from 'components/PerformanceRadarChart'
 import Header from 'components/Header'
-import Activity from 'components/Activity'
+import ActivityBarChart from 'components/ActivityBarChart'
 import AverageSessionsLineChart from 'components/AverageSessionsLineChart'
 import ScorePieChart from 'components/ScorePieChart'
 import UserMapper from 'mapper/UserMapper'
@@ -63,7 +63,7 @@ export default function Dashboard() {
             <Sidebar />
             <StyledMain>
                 {firstName && <Header firstName={firstName} />}
-                <Activity />
+                <ActivityBarChart />
                 <StyledData>{dataElm}</StyledData>
                 <AverageSessionsLineChart />
                 <Performance />

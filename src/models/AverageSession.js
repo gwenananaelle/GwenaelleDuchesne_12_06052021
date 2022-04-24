@@ -3,7 +3,7 @@
  * @class AverageSession
  */
 export default class AverageSession {
-    constructor({ sessionLength, day, legend }) {
+    constructor({ sessionLength, day }) {
         this.sessionLength = sessionLength
         this.day = day
     }

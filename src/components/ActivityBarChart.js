@@ -96,7 +96,7 @@ COMPONENT
  * React component "Activity" with bar chart
  * @returns {string} component generated HTML
  */
-function Activity() {
+function ActivityBarChart() {
     let { id } = useParams()
     const [sessions, setData] = useState({})
     useEffect(() => {
@@ -160,4 +160,4 @@ function Activity() {
         </StyledResponsiveContainer>
     )
 }
-export default Activity
+export default ActivityBarChart
