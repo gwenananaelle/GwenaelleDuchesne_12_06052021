@@ -50,7 +50,7 @@ const StyledText = styled.p`
 `
 
 /**
- * React component "SideBar"
+ * React component "SideBar", vertical navigation with icons
  * @returns {string} component generated HTML
  */
 function Sidebar() {

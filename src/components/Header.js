@@ -22,7 +22,7 @@ const StyledText = styled.p`
     font-size: 1.125em;
 `
 /**
- * React component "Header"
+ * React component "Header", welcome message to user
  * @param {Object} props
  * @param {string} props.firstName
  * @returns {string} component generated HTML

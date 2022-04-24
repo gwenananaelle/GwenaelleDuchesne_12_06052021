@@ -43,7 +43,7 @@ const StyledNavLink = styled(NavLink)`
     }
 `
 /**
- * React component "NavigationBar"
+ * React component "NavigationBar", top horizontal navigation
  * @returns {string} component generated HTML
  */
 function NavigationBar() {

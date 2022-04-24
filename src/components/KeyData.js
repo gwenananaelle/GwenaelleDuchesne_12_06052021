@@ -50,7 +50,7 @@ const Text = styled.div`
     }
 `
 /**
- * thumb component, count for calories, proteins, glucides or lipids
+ * thumb component, counts for calories, proteins, glucides or lipids
  * @param {object} props
  * @param {string} props.category "calorieCount, proteinCount, carbohydrateCount, lipidCount"
  * @param {number} props.categoryCount

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/PerformanceRadarChart.js</title>
+    <title>JSDoc: Source: components/ScorePieChart.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/PerformanceRadarChart.js</h1>
+    <h1 class="page-title">Source: components/ScorePieChart.js</h1>
 
     
 
@@ -26,69 +26,123 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import { fetchPerformance } from 'services/fetchAPI'
+            <pre class="prettyprint source linenums"><code>import React from 'react'
 import {
     ResponsiveContainer,
-    RadarChart,
-    PolarGrid,
-    PolarAngleAxis,
-    Radar,
+    PieChart,
+    Pie,
+    Cell,
+    Label,
+    Legend,
 } from 'recharts'
-import styled from 'styled-components'
 import colors from 'utils/style/colors'
-import PerformanceMapper from 'mapper/PerformanceMapper'
+import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 /*
 STYLE
  */
 
-const StyledResponsiveContainer = styled(ResponsiveContainer)`
-    background: #282d30;
-    color: ${colors.background};
+const StyledLabelFirstLine = styled.tspan`
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 26px;
 `
-
+const StyledLabelSecondLine = styled.tspan`
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    fill: #74798d;
+`
+const StyledResponsiveContainer = styled(ResponsiveContainer)`
+    background: ${colors.background};
+`
 /*
 COMPONENT
 */
 
 /**
- * React component "Performance" with radar chart
+ * React component "ScorePieChart" with pie chart
+ * @param Object props
+ * @param {Number} props.todayScore
  * @returns {string} component generated HTML
  */
-function PerformanceRadarChart() {
-    let { id } = useParams()
-    const [data, setData] = useState({})
-    useEffect(() => {
-        fetchPerformance(id).then((res) => {
-            if (res) {
-                setData(PerformanceMapper.convertToPerformances(res))
-            }
-        })
-    }, [id])
+function ScorePieChart({ todayScore }) {
+    const cellColors = [colors.secondary, colors.background]
+    const data = [
+        {
+            value: todayScore * 360,
+        },
+        {
+            value: (1 - todayScore) * 360,
+        },
+    ]
+    const renderLegend = () => {
+        return &lt;p>score&lt;/p>
+    }
+    const CustomLabel = ({ viewBox }) => {
+        const { cx, cy } = viewBox
+        return (
+            &lt;React.Fragment>
+                &lt;circle cx={cx} cy={cy} r="70" fill="white" />
+
+                &lt;text>
+                    &lt;StyledLabelFirstLine x={cx - 24} y={cy - 5}>{`${
+                        todayScore * 100
+                    }%`}&lt;/StyledLabelFirstLine>
+                &lt;/text>
+                &lt;text x={cx - 58} y={cy + 15}>
+                    &lt;StyledLabelSecondLine>
+                        de votre objectif
+                    &lt;/StyledLabelSecondLine>
+                &lt;/text>
+            &lt;/React.Fragment>
+        )
+    }
     return (
         &lt;StyledResponsiveContainer width="100%" height="100%">
-            &lt;RadarChart data={data} outerRadius="70%">
-                &lt;PolarGrid radialLines={false} />
-                &lt;PolarAngleAxis
-                    dataKey="kind"
-                    tick={{
-                        fill: 'white',
-                        fontSize: 12,
-                    }}
-                />
-                &lt;Radar
+            &lt;PieChart width={730} height={250}>
+                &lt;Pie
+                    data={data}
                     dataKey="value"
-                    stroke="FF0101B2"
+                    cx="50%"
+                    cy="50%"
+                    startAngle={90}
+                    endAngle={450}
+                    innerRadius={70}
+                    outerRadius={80}
                     fill={colors.secondary}
-                    fillOpacity={0.7}
+                >
+                    &lt;Label
+                        offset={0}
+                        position="center"
+                        content={CustomLabel}
+                        fill="#FFFFFF"
+                    />
+                    {data.map((entry, index) => (
+                        &lt;Cell
+                            key={`cell-${index}`}
+                            fill={cellColors[index]}
+                            stroke={'none'}
+                        />
+                    ))}
+                &lt;/Pie>
+                &lt;Legend
+                    verticalAlign="top"
+                    align="left"
+                    content={renderLegend}
                 />
-            &lt;/RadarChart>
+            &lt;/PieChart>
         &lt;/StyledResponsiveContainer>
     )
 }
-export default PerformanceRadarChart
+ScorePieChart.propTypes = {
+    todayScore: PropTypes.number,
+}
+
+export default ScorePieChart
 </code></pre>
         </article>
     </section>

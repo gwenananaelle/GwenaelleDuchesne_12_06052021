@@ -36,12 +36,12 @@ COMPONENT
 */
 
 /**
- * React component "Score" with pie chart
+ * React component "ScorePieChart" with pie chart
  * @param Object props
  * @param {Number} props.todayScore
  * @returns {string} component generated HTML
  */
-function Score({ todayScore }) {
+function ScorePieChart({ todayScore }) {
     const cellColors = [colors.secondary, colors.background]
     const data = [
         {
@@ -110,8 +110,8 @@ function Score({ todayScore }) {
         </StyledResponsiveContainer>
     )
 }
-Score.propTypes = {
+ScorePieChart.propTypes = {
     todayScore: PropTypes.number,
 }
 
-export default Score
+export default ScorePieChart

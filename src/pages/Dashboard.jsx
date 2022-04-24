@@ -9,7 +9,7 @@ import Performance from 'components/PerformanceRadarChart'
 import Header from 'components/Header'
 import Activity from 'components/Activity'
 import AverageSessionsLineChart from 'components/AverageSessionsLineChart'
-import Score from 'components/Score'
+import ScorePieChart from 'components/ScorePieChart'
 import UserMapper from 'mapper/UserMapper'
 
 /*
@@ -67,7 +67,7 @@ export default function Dashboard() {
                 <StyledData>{dataElm}</StyledData>
                 <AverageSessionsLineChart />
                 <Performance />
-                <Score todayScore={score}/>
+                <ScorePieChart todayScore={score}/>
             </StyledMain>
         </StyledPageDiv>
         
